@@ -34,7 +34,7 @@ const App: React.FC = () => {
   if (!data.length) return <div>Loading...</div>;
 
   return (
-    <Router>
+    <Router basename="/mp2">
       <Routes>
         <Route path="/" element={<ListView data={data} />} />
         <Route path="/gallery" element={<GalleryView data={data} />} />
