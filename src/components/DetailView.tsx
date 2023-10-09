@@ -1,5 +1,5 @@
 // DetailView.tsx
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./DetailView.module.css";
 
@@ -13,11 +13,38 @@ const DetailView: React.FC<Props> = ({ data }) => {
 
   const item = data.find((d) => d.asset_id === itemId);
 
-  if (!item) return <div>Item not found</div>;
-
   const currentIndex = data.indexOf(item);
   const prevItem = data[currentIndex - 1];
   const nextItem = data[currentIndex + 1];
+
+  // New state variable for the current index input
+  const [inputIndex, setInputIndex] = useState<number>(currentIndex + 1);
+
+  const handleIndexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newIndex = parseInt(e.target.value, 10);
+    setInputIndex(newIndex);
+  };
+
+  const handleIndexSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && inputIndex > 0 && inputIndex <= data.length) {
+      const targetItem = data[inputIndex - 1];
+      navigate(`/detail/${targetItem.asset_id}`);
+    }
+  };
+
+  const handlePrevClick = () => {
+    if (prevItem) {
+      setInputIndex(currentIndex); // Change the input index to the previous item's index
+      navigate(`/detail/${prevItem.asset_id}`);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (nextItem) {
+      setInputIndex(currentIndex + 2); // Change the input index to the next item's index
+      navigate(`/detail/${nextItem.asset_id}`);
+    }
+  };
 
   return (
     <div className={styles.detailContainer}>
@@ -32,22 +59,26 @@ const DetailView: React.FC<Props> = ({ data }) => {
 
       <div className={styles.navButtons}>
         {prevItem ? (
-          <button onClick={() => navigate(`/detail/${prevItem.asset_id}`)}>
-            Previous
-          </button>
+          <button onClick={handlePrevClick}>Previous</button>
         ) : (
-          <div></div> /* Empty div as a placeholder */
+          <div className={styles.placeholderButton}></div>
         )}
-        {/* Display the current item number out of total items */}
-        <div className={styles.itemCount}>
-          {currentIndex + 1} of {data.length}
+
+        <div className={styles.itemIndicator}>
+          <input
+            type="number"
+            value={inputIndex}
+            onChange={handleIndexChange}
+            onKeyPress={handleIndexSubmit}
+            className={styles.itemIndexInput}
+          />
+          <span>/ {data.length}</span>
         </div>
+
         {nextItem ? (
-          <button onClick={() => navigate(`/detail/${nextItem.asset_id}`)}>
-            Next
-          </button>
+          <button onClick={handleNextClick}>Next</button>
         ) : (
-          <div></div> /* Empty div as a placeholder */
+          <div className={styles.placeholderButton}></div>
         )}
       </div>
     </div>
