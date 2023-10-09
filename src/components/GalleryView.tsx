@@ -7,6 +7,8 @@ interface Props {
 }
 
 const GalleryView: React.FC<Props> = ({ data }) => {
+  const [currentView, setCurrentView] = useState<string>("gallery");
+
   const [query, setQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(32); // 8x8
@@ -31,6 +33,26 @@ const GalleryView: React.FC<Props> = ({ data }) => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.viewSwitch}>
+        <button
+          className={
+            styles.listViewButton +
+            (currentView === "list" ? " " + styles.active : "")
+          }
+          onClick={() => navigate("/")}
+        >
+          List View
+        </button>
+        <button
+          className={
+            styles.galleryViewButton +
+            (currentView === "gallery" ? " " + styles.active : "")
+          }
+          onClick={() => navigate("/gallery")}
+        >
+          Gallery View
+        </button>
+      </div>
       <input
         type="text"
         placeholder="Search by Asset ID..."

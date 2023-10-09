@@ -9,6 +9,8 @@ interface Props {
 const DEFAULT_ITEMS_PER_PAGE = 5;
 
 const ListView: React.FC<Props> = ({ data }) => {
+  const [currentView, setCurrentView] = useState<string>("list");
+
   const [query, setQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(
@@ -35,6 +37,26 @@ const ListView: React.FC<Props> = ({ data }) => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.viewSwitch}>
+        <button
+          className={
+            styles.listViewButton +
+            (currentView === "list" ? " " + styles.active : "")
+          }
+          onClick={() => navigate("/")}
+        >
+          List View
+        </button>
+        <button
+          className={
+            styles.galleryViewButton +
+            (currentView === "gallery" ? " " + styles.active : "")
+          }
+          onClick={() => navigate("/gallery")}
+        >
+          Gallery View
+        </button>
+      </div>
       <input
         type="text"
         placeholder="Search by Asset ID..."

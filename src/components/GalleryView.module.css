@@ -57,3 +57,22 @@
     margin-left: 1em;
   }
   
+  .viewSwitch {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+  }
+  
+  .listViewButton, .galleryViewButton {
+    padding: 0.5em 1em;
+    margin: 0 0.5em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .active {
+    background-color: #007BFF;  /* Change to any color for the highlight */
+    color: white;
+  }
+  

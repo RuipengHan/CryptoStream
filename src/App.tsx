@@ -37,15 +37,7 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/" element={<ListView data={data} />} />
-        <Route
-          path="/gallery"
-          element={
-            <GalleryView
-              onItemSelect={(item) => console.log(item)}
-              data={data}
-            />
-          }
-        />
+        <Route path="/gallery" element={<GalleryView data={data} />} />
         <Route path="/detail/:itemId" element={<DetailView data={data} />} />
       </Routes>
     </Router>
