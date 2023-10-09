@@ -9,7 +9,7 @@ interface Props {
 const DEFAULT_ITEMS_PER_PAGE = 5;
 
 const ListView: React.FC<Props> = ({ data }) => {
-  const [currentView, setCurrentView] = useState<string>("list");
+  const [currentView] = useState<string>("list");
 
   const [query, setQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);

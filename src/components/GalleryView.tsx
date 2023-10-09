@@ -7,7 +7,7 @@ interface Props {
 }
 
 const GalleryView: React.FC<Props> = ({ data }) => {
-  const [currentView, setCurrentView] = useState<string>("gallery");
+  const [currentView] = useState<string>("gallery");
 
   const [query, setQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
