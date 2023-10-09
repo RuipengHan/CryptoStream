@@ -46,15 +46,27 @@
     margin-bottom: 10px;
   }
   
+ 
+  .pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   .pagination {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    width: 200px; 
+    /* flex-wrap: wrap; */
+    width: 20vw; 
   }
   
-  .pagination button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  .pageInput {
+    width: 50px; /* Adjust width as needed */
+    text-align: center;
+    margin: 0 10px;
+  }
+  
+  .itemsDropdown {
+    margin-left: 20px;
   }

@@ -6,21 +6,23 @@ interface Props {
   data: any[];
 }
 
-const ITEMS_PER_PAGE = 10; // Adjust this value as required
+const DEFAULT_ITEMS_PER_PAGE = 5;
 
 const ListView: React.FC<Props> = ({ data }) => {
   const [query, setQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(
+    DEFAULT_ITEMS_PER_PAGE
+  );
 
   const navigate = useNavigate();
   const filteredData = data.filter((item) => item.asset_id.includes(query));
 
   // Get current page data
-  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
-  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Pagination functions
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
   };
@@ -28,6 +30,8 @@ const ListView: React.FC<Props> = ({ data }) => {
   const prevPage = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   return (
     <div className={styles.container}>
@@ -54,17 +58,50 @@ const ListView: React.FC<Props> = ({ data }) => {
           </li>
         ))}
       </ul>
+
       <div className={styles.pagination}>
         <button onClick={prevPage} disabled={currentPage === 1}>
           Prev
         </button>
-        <span>{currentPage}</span>
-        <button
-          onClick={nextPage}
-          disabled={currentItems.length < ITEMS_PER_PAGE}
-        >
+
+        {/* Input for navigating to a specific page */}
+        <div>
+          <input
+            type="number"
+            value={currentPage}
+            onChange={(e) => {
+              const pageNum = Number(e.target.value);
+              setCurrentPage(
+                pageNum <= totalPages
+                  ? pageNum >= 1
+                    ? pageNum
+                    : 1
+                  : totalPages
+              );
+            }}
+            className={styles.pageInput}
+          />
+          <span>/ {totalPages}</span>
+        </div>
+
+        <button onClick={nextPage} disabled={currentPage === totalPages}>
           Next
         </button>
+
+        {/* Dropdown to select items per page */}
+        <select
+          value={itemsPerPage}
+          onChange={(e) => {
+            setItemsPerPage(Number(e.target.value));
+            setCurrentPage(1); // Reset to the first page
+          }}
+          className={styles.itemsDropdown}
+        >
+          <option value="5">5 items/page</option>
+          <option value="10">10 items/page</option>
+          <option value="20">20 items/page</option>
+          <option value="50">50 items/page</option>
+        </select>
       </div>
     </div>
   );
