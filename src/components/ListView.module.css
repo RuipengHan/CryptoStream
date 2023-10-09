@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  padding-top: 50px; /* Space from the top, adjust as desired */
+}
+
+  
+  .searchInput {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  .list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .listItem {
+    padding: 20px; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    margin-bottom: 20px; 
+    background-color: #fff; 
+  }
+  
+  
+  .listItem:hover {
+    transform: scale(1.05);
+  }
+  
+  .listItem:active {
+    transform: scale(0.95);
+  }
+  
+  .icon {
+    max-width: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    width: 200px; 
+  }
+  
+  .pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
