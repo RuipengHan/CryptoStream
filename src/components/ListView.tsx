@@ -52,12 +52,19 @@ const ListView: React.FC<Props> = ({ data }) => {
         const aValue = parseFloat(a.price_usd);
         const bValue = parseFloat(b.price_usd);
         return sortOrder === "asc" ? aValue - bValue : bValue - aValue;
+      } else if (sortCriteria === "data_start") {
+        const aValue = a[sortCriteria] || "";
+        const bValue = b[sortCriteria] || "";
+        if (!aValue || !bValue) return 0; // Skip if either value is missing
+        return sortOrder === "asc"
+          ? String(aValue).localeCompare(String(bValue))
+          : String(bValue).localeCompare(String(aValue));
       } else {
         const aValue = a[sortCriteria];
         const bValue = b[sortCriteria];
         return sortOrder === "asc"
-          ? aValue.localeCompare(bValue)
-          : bValue.localeCompare(aValue);
+          ? String(aValue).localeCompare(String(bValue))
+          : String(bValue).localeCompare(String(aValue));
       }
     });
   }
@@ -105,7 +112,7 @@ const ListView: React.FC<Props> = ({ data }) => {
           <option value="asset_id">Asset ID</option>
           <option value="name">Name</option>
           <option value="price_usd">Price (USD)</option>
-          {/* <option value="data_start">Date Released</option> */}
+          <option value="data_start">Date Released</option>
         </select>
 
         <div className={styles.sortOrder}>
