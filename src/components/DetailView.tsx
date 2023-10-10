@@ -51,13 +51,13 @@ const DetailView: React.FC<Props> = ({ data }) => {
       {/* List and Gallery buttons */}
       <div className={styles.viewSwitch}>
         <button className={styles.switchButton} onClick={() => navigate("/")}>
-          List
+          Back to List
         </button>
         <button
           className={styles.switchButton}
           onClick={() => navigate("/gallery")}
         >
-          Gallery
+          Back to Gallery
         </button>
       </div>
 
