@@ -76,7 +76,22 @@ const ListView: React.FC<Props> = ({ data }) => {
               alt={`${item.asset_id} Icon`}
               className={styles.icon}
             />
-            {item.asset_id}
+            <div className={styles.itemInfo}>
+              <div className={styles.assetIdName}>
+                <strong>{item.asset_id}</strong> - {item.name}
+              </div>
+              <div className={styles.datePrice}>
+                <span>Date Released: {item.data_start}</span>
+                {/* <span>Price: ${item.price_usd}</span> */}
+                {/* <span>Price: $ {parseFloat(item.price_usd).toFixed(2)}</span> */}
+                <span>
+                  Current Price: $
+                  {item.asset_id === "USD"
+                    ? "1.00"
+                    : parseFloat(item.price_usd).toFixed(2)}
+                </span>
+              </div>
+            </div>
           </li>
         ))}
       </ul>

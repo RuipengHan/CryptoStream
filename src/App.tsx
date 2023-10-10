@@ -7,15 +7,11 @@ import DetailView from "./components/DetailView";
 import axios from "axios";
 
 const App: React.FC = () => {
-  // const data = [
-  //   { id: 1, name: "Bitcoin", imageUrl: "...", description: "..." },
-  //   // ... other data
-  // ];
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(
+      const icon_data = await axios.get(
         "https://rest.coinapi.io/v1/assets/icons/32",
         {
           headers: {
@@ -23,8 +19,25 @@ const App: React.FC = () => {
           },
         }
       );
+      const icon_data_json = icon_data.data;
 
-      setData(result.data); // Or adjust based on the structure of the API response
+      const asset_data = await axios.get("https://rest.coinapi.io/v1/assets", {
+        headers: {
+          "X-CoinAPI-Key": "10E86574-F2B3-4C3A-A9A9-A0C22E85E079",
+        },
+      });
+      const asset_data_json = asset_data.data;
+
+      // Merge data
+      const mergedData = icon_data_json.map((icon_item: any) => {
+        const asset_item = asset_data_json.find(
+          (a: any) => a.asset_id === icon_item.asset_id
+        );
+        return { ...icon_item, ...asset_item };
+      });
+
+      setData(mergedData); // Or adjust based on the structure of the API response
+      console.log(mergedData[0]);
     };
 
     fetchData();

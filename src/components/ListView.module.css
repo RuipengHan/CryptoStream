@@ -4,89 +4,114 @@
   align-items: center;
   justify-content: flex-start;
   height: 100vh;
-  padding-top: 50px; /* Space from the top, adjust as desired */
+  padding-top: 50px;
 }
 
+.searchInput {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
   
-  .searchInput {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-  }
-  
-  .list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .listItem {
-    padding: 20px; 
-    border: 1px solid #e0e0e0; 
-    border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.2s ease;
-    cursor: pointer;
-    margin-bottom: 20px; 
-    background-color: #fff; 
-  }
-  
-  
-  .listItem:hover {
-    transform: scale(1.05);
-  }
-  
-  .listItem:active {
-    transform: scale(0.95);
-  }
-  
-  .icon {
-    max-width: 50px;
-    margin-bottom: 10px;
-  }
-  
- 
-  .pagination button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+.list {
+  list-style: none;
+  padding: 0;
+}
 
-  .pagination {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    /* flex-wrap: wrap; */
-    width: 20vw; 
-  }
-  
-  .pageInput {
-    width: 50px; /* Adjust width as needed */
-    text-align: center;
-    margin: 0 10px;
-  }
-  
-  .itemsDropdown {
-    margin-left: 20px;
-  }
+.listItem {
+  padding: 15px; 
+  border: 1px solid #e0e0e0; 
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  /* margin-bottom: 20px;  */
+  margin: 20px 0px;
+  background-color: #fff; 
+  align-items: center;
+  display: flex;
+}
 
-  .viewSwitch {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1em;
-  }
-  
-  .listViewButton, .galleryViewButton {
-    padding: 0.5em 1em;
-    margin: 0 0.5em;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .active {
-    background-color: #007BFF;  /* Change to any color for the highlight */
-    color: white;
-  }
-  
+
+.listItem:hover {
+  transform: scale(1.05);
+  background-color: #eaeaea;
+}
+
+.listItem:active {
+  transform: scale(0.95);
+}
+
+.icon {
+  /* max-width: 50px; */
+  /* margin-bottom: 10px; */
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  object-fit: contain;
+}
+
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  /* flex-wrap: wrap; */
+  width: 20vw; 
+}
+
+.pageInput {
+  width: 50px; /* Adjust width as needed */
+  text-align: center;
+  margin: 0 10px;
+}
+
+.itemsDropdown {
+  margin-left: 20px;
+}
+
+.viewSwitch {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.listViewButton, .galleryViewButton {
+  padding: 0.5em 1em;
+  margin: 0 0.5em;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.active {
+  background-color: #007BFF;  
+  color: white;
+}
+
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.assetIdName {
+  font-size: 1.2em;
+}
+
+.datePrice {
+  display: flex;            /* Adjusted to flex */
+  flex-direction: column;   /* Makes it a column to ensure each detail is on a separate line */
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #777;
+}
