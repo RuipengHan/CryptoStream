@@ -47,7 +47,16 @@ const ListView: React.FC<Props> = ({ data }) => {
   let sortedData = filteredData;
 
   if (sortCriteria !== "none") {
-    sortedData = [...filteredData].sort((a, b) => {
+    sortedData = [...filteredData];
+
+    // If sorting by price_usd, filter out items without a valid price_usd
+    if (sortCriteria === "price_usd") {
+      sortedData = sortedData.filter(
+        (item) => item.price_usd && !isNaN(parseFloat(item.price_usd))
+      );
+    }
+
+    sortedData.sort((a, b) => {
       if (sortCriteria === "price_usd") {
         const aValue = parseFloat(a.price_usd);
         const bValue = parseFloat(b.price_usd);
