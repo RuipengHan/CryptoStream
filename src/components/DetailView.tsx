@@ -72,12 +72,15 @@ const DetailView: React.FC<Props> = ({ data }) => {
           <strong>{item.asset_id}</strong> - {item.name}
         </div>
         <div>Date Released: {item.data_start}</div>
+        <div>Last Trade: {item.data_end}</div>
         <div>
           Current Price: $
           {item.asset_id === "USD"
             ? "1.00"
             : parseFloat(item.price_usd).toFixed(2)}
         </div>
+        <div>1-Day Volume (USD): ${item.volume_1day_usd}</div>
+        <div>1-Month Volume (USD): ${item.volume_1mth_usd}</div>
       </div>
 
       {/* Navigation buttons section */}
