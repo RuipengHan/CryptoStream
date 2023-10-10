@@ -14,13 +14,22 @@ const GalleryView: React.FC<Props> = ({ data }) => {
   const [itemsPerPage, setItemsPerPage] = useState<number>(16); // 8x8
 
   const navigate = useNavigate();
-  // const filteredData = data.filter((item) => item.asset_id.includes(query));
   // Filters data based on id and name (case insensitive):
-  const filteredData = data.filter(
+  let filteredData = data.filter(
     (item) =>
       item.asset_id.toLowerCase().includes(query) ||
       item.name.toLowerCase().includes(query)
   );
+
+  // Filtering:
+  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+  // Apply selected filter if any:
+  if (selectedFilter === "Crypto") {
+    filteredData = filteredData.filter((item) => item.type_is_crypto === 1);
+  } else if (selectedFilter === "Currency") {
+    filteredData = filteredData.filter((item) => item.type_is_crypto === 0);
+  }
+
   // Get current page data
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -65,6 +74,37 @@ const GalleryView: React.FC<Props> = ({ data }) => {
         onChange={(e) => setQuery(e.target.value.toLowerCase())}
         className={styles.searchInput}
       />
+
+      {/* New Filter UI */}
+      <div className={styles.filterContainer}>
+        <button
+          className={
+            selectedFilter === "Crypto"
+              ? styles.filterButtonActive
+              : styles.filterButton
+          }
+          onClick={() =>
+            setSelectedFilter((prev) => (prev === "Crypto" ? null : "Crypto"))
+          }
+        >
+          Crypto
+        </button>
+        <button
+          className={
+            selectedFilter === "Currency"
+              ? styles.filterButtonActive
+              : styles.filterButton
+          }
+          onClick={() =>
+            setSelectedFilter((prev) =>
+              prev === "Currency" ? null : "Currency"
+            )
+          }
+        >
+          Currency
+        </button>
+      </div>
+
       <div className={styles.grid}>
         {currentItems.map((item) => (
           <div

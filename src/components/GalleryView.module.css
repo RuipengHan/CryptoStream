@@ -98,3 +98,35 @@
   background-color: #007BFF;
   color: white;
 }
+
+.filterContainer {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filterButton {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  background-color: #eee;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.filterButton:hover {
+  /* slightly darker shade on hover */
+  background-color: #ddd; 
+  /* slightly enlarge the button on hover */
+  transform: scale(1.05); 
+}
+
+.filterButtonActive {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.filterButtonActive:hover {
+  background-color: #0056b3; 
+}
