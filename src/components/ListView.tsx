@@ -131,10 +131,10 @@ const ListView: React.FC<Props> = ({ data }) => {
           className={styles.sortDropdown}
         >
           <option value="none">None (Original Order)</option>
-          <option value="asset_id">Asset ID</option>
-          <option value="name">Name</option>
-          <option value="price_usd">Price (USD)</option>
           <option value="data_start">Date Released</option>
+          <option value="price_usd">Price (USD)</option>
+          <option value="asset_id">Asset ID (e.g BTC)</option>
+          <option value="name">Name (e.g. Bitcoin)</option>
         </select>
 
         <div className={styles.sortOrder}>
