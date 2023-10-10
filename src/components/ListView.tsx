@@ -18,7 +18,14 @@ const ListView: React.FC<Props> = ({ data }) => {
   );
 
   const navigate = useNavigate();
-  const filteredData = data.filter((item) => item.asset_id.includes(query));
+  // const filteredData = data.filter((item) => item.asset_id.includes(query));
+
+  // Filters data based on id and name (case insensitive):
+  const filteredData = data.filter(
+    (item) =>
+      item.asset_id.toLowerCase().includes(query) ||
+      item.name.toLowerCase().includes(query)
+  );
 
   // Get current page data
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -61,7 +68,7 @@ const ListView: React.FC<Props> = ({ data }) => {
         type="text"
         placeholder="Search by Asset ID..."
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => setQuery(e.target.value.toLowerCase())}
         className={styles.searchInput}
       />
       <ul className={styles.list}>
