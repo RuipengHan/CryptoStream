@@ -39,7 +39,7 @@ const App: React.FC = () => {
       });
 
       setData(mergedData); // Or adjust based on the structure of the API response
-      console.log(mergedData[0]);
+      // console.log(mergedData[0]);
     };
 
     fetchData();

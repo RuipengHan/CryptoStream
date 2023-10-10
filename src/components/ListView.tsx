@@ -30,7 +30,7 @@ const ListView: React.FC<Props> = ({ data }) => {
   // Get current page data
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  // const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
@@ -41,6 +41,28 @@ const ListView: React.FC<Props> = ({ data }) => {
   };
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  const [sortCriteria, setSortCriteria] = useState<string>("none"); // Default sorting criteria
+  const [sortOrder, setSortOrder] = useState<string>("asc"); // Default sorting order
+  let sortedData = filteredData;
+
+  if (sortCriteria !== "none") {
+    sortedData = [...filteredData].sort((a, b) => {
+      if (sortCriteria === "price_usd") {
+        const aValue = parseFloat(a.price_usd);
+        const bValue = parseFloat(b.price_usd);
+        return sortOrder === "asc" ? aValue - bValue : bValue - aValue;
+      } else {
+        const aValue = a[sortCriteria];
+        const bValue = b[sortCriteria];
+        return sortOrder === "asc"
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
+    });
+  }
+
+  const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <div className={styles.container}>
@@ -71,6 +93,45 @@ const ListView: React.FC<Props> = ({ data }) => {
         onChange={(e) => setQuery(e.target.value.toLowerCase())}
         className={styles.searchInput}
       />
+      {/* Sorting  */}
+      <div className={styles.sortSection}>
+        <label>Sort By:</label>
+        <select
+          value={sortCriteria}
+          onChange={(e) => setSortCriteria(e.target.value)}
+          className={styles.sortDropdown}
+        >
+          <option value="none">None (Original Order)</option>
+          <option value="asset_id">Asset ID</option>
+          <option value="name">Name</option>
+          <option value="price_usd">Price (USD)</option>
+          {/* <option value="data_start">Date Released</option> */}
+        </select>
+
+        <div className={styles.sortOrder}>
+          <label>
+            <input
+              type="radio"
+              name="sortOrder"
+              value="asc"
+              checked={sortOrder === "asc"}
+              onChange={() => setSortOrder("asc")}
+            />
+            Ascending
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="sortOrder"
+              value="desc"
+              checked={sortOrder === "desc"}
+              onChange={() => setSortOrder("desc")}
+            />
+            Descending
+          </label>
+        </div>
+      </div>
+
       <ul className={styles.list}>
         {currentItems.map((item) => (
           <li
