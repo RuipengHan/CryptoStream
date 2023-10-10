@@ -6,7 +6,7 @@ interface Props {
   data: any[];
 }
 
-const DEFAULT_ITEMS_PER_PAGE = 5;
+const DEFAULT_ITEMS_PER_PAGE = 4;
 
 const ListView: React.FC<Props> = ({ data }) => {
   const [currentView] = useState<string>("list");
@@ -71,6 +71,19 @@ const ListView: React.FC<Props> = ({ data }) => {
 
   const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value.toLowerCase());
+    setCurrentPage(1); // Reset to the first page
+  };
+
+  // Set Sort Criteria and Reset Page
+  const handleSortCriteriaChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSortCriteria(e.target.value);
+    setCurrentPage(1); // Reset to the first page
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.viewSwitch}>
@@ -97,7 +110,7 @@ const ListView: React.FC<Props> = ({ data }) => {
         type="text"
         placeholder="Search by Asset ID..."
         value={query}
-        onChange={(e) => setQuery(e.target.value.toLowerCase())}
+        onChange={handleSearch}
         className={styles.searchInput}
       />
       {/* Sorting  */}
@@ -105,7 +118,7 @@ const ListView: React.FC<Props> = ({ data }) => {
         <label>Sort By:</label>
         <select
           value={sortCriteria}
-          onChange={(e) => setSortCriteria(e.target.value)}
+          onChange={handleSortCriteriaChange}
           className={styles.sortDropdown}
         >
           <option value="none">None (Original Order)</option>
@@ -121,8 +134,12 @@ const ListView: React.FC<Props> = ({ data }) => {
               type="radio"
               name="sortOrder"
               value="asc"
+              disabled={sortCriteria === "none"}
               checked={sortOrder === "asc"}
-              onChange={() => setSortOrder("asc")}
+              onChange={() => {
+                setSortOrder("asc");
+                setCurrentPage(1);
+              }}
             />
             Ascending
           </label>
@@ -131,8 +148,12 @@ const ListView: React.FC<Props> = ({ data }) => {
               type="radio"
               name="sortOrder"
               value="desc"
+              disabled={sortCriteria === "none"}
               checked={sortOrder === "desc"}
-              onChange={() => setSortOrder("desc")}
+              onChange={() => {
+                setSortOrder("desc");
+                setCurrentPage(1);
+              }}
             />
             Descending
           </label>
@@ -209,7 +230,7 @@ const ListView: React.FC<Props> = ({ data }) => {
           }}
           className={styles.itemsDropdown}
         >
-          <option value="5">5 items/page</option>
+          <option value="4">4 items/page</option>
           <option value="10">10 items/page</option>
           <option value="20">20 items/page</option>
           <option value="50">50 items/page</option>
