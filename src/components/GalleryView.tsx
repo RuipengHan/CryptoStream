@@ -77,10 +77,20 @@ const GalleryView: React.FC<Props> = ({ data }) => {
               alt={`${item.asset_id} Icon`}
               className={styles.icon}
             />
-            {item.asset_id}
+            <div className={styles.assetInfo}>
+              <strong>{item.asset_id}</strong>
+              <span>{item.name}</span>
+              <span>
+                Current Price: $
+                {item.asset_id === "USD"
+                  ? "1.00"
+                  : parseFloat(item.price_usd).toFixed(2)}
+              </span>
+            </div>
           </div>
         ))}
       </div>
+
       <div className={styles.pagination}>
         <button onClick={prevPage} disabled={currentPage === 1}>
           Prev

@@ -1,78 +1,100 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2em;
-    width: 75%;      /* middle 75% of width */
-    height: 75vh;    /* 75% of viewport height */
-    margin: auto;    /* centers the container */
-  }
-  
-  .searchInput {
-    padding: 0.5em;
-    font-size: 1em;
-    margin-bottom: 1em;
-  }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 1em;
-    width: 100%;
-  }
-  
-  .gridItem {
-    background-color: #f7f7f7;
-    padding: 0.5em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.3s;
-  }
-  
-  .gridItem:hover {
-    transform: scale(1.05);
-  }
-  
-  .icon {
-    width: 30px;   
-    height: 30px;   
-    object-fit: cover;
-  }
-  
-  .pagination {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-    margin-top: 1em;
-  }
-  
-  .pageInput {
-    width: 50px;
-    text-align: center;
-  }
-  
-  .itemsDropdown {
-    margin-left: 1em;
-  }
-  
-  .viewSwitch {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1em;
-  }
-  
-  .listViewButton, .galleryViewButton {
-    padding: 0.5em 1em;
-    margin: 0 0.5em;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .active {
-    background-color: #007BFF;  /* Change to any color for the highlight */
-    color: white;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+  width: 75%;
+  /* height: 75vh; */
+  margin: auto;
+}
+
+.searchInput {
+  padding: 0.5em;
+  font-size: 1em;
+  /* Increase gap after search bar */
+  margin-bottom: 2em; 
+  /* Restricting width for better aesthetics */
+  width: 20%; 
+   /* Giving a slight rounded corner */
+  border-radius: 8px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5em; 
+  width: 100%;
+}
+
+.gridItem {
+  background-color: #f7f7f7;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+  /* Rounded edges for each grid item */
+  border-radius: 8px; 
+}
+
+.gridItem:hover {
+  transform: scale(1.05);
+  /* Shadow effect for 3D lift */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+
+.icon {
+  width: 50px; 
+  height: 50px;
+  object-fit: cover;
+  /* Providing some space between the icon and text */
+  margin-bottom: 10px; 
+}
+
+.assetInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+}
+
+.pagination {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  margin-top: 2em; 
+}
+
+.pageInput {
+  width: 30px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.itemsDropdown {
+  margin-left: 1em;
+}
+
+.viewSwitch {
+  display: flex;
+  justify-content: center;
+  /* More space after the buttons */
+  margin-bottom: 2em; 
+}
+
+.listViewButton, .galleryViewButton {
+  /* Wider buttons */
+  padding: 0.5em 1.5em; 
+  margin: 0 0.5em;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 4px; 
+}
+
+.active {
+  background-color: #007BFF;
+  color: white;
+}
