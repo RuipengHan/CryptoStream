@@ -11,7 +11,7 @@ const GalleryView: React.FC<Props> = ({ data }) => {
 
   const [query, setQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [itemsPerPage, setItemsPerPage] = useState<number>(32); // 8x8
+  const [itemsPerPage, setItemsPerPage] = useState<number>(16); // 8x8
 
   const navigate = useNavigate();
   // const filteredData = data.filter((item) => item.asset_id.includes(query));
@@ -125,8 +125,8 @@ const GalleryView: React.FC<Props> = ({ data }) => {
           className={styles.itemsDropdown}
         >
           <option value="16">16 items/page</option>
-          <option value="64">64 items/page</option>
           <option value="32">32 items/page</option>
+          <option value="64">64 items/page</option>
         </select>
       </div>
     </div>
