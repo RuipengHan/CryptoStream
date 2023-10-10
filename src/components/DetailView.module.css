@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh; /* to take the full viewport height */
+    position: relative; /* Added */
   }
   
   .detailCard {
@@ -12,7 +13,7 @@
     align-items: center;
     width: 40%; 
     padding: 2em;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     background-color: #fff; 
   }
@@ -29,7 +30,7 @@
     justify-content: space-between;
     width: 100%; 
     max-width: 400px; /* Adjust this value according to your desired button positioning width */
-    margin-top: 20px; 
+    margin-top: 50px; 
   }
   
   
@@ -54,3 +55,29 @@
   .placeholderButton {
     visibility: hidden;
   }
+
+  .viewSwitch {
+    position: absolute;
+    top: 15vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  
+  .switchButton {
+    padding: 0.5em 1em;
+    margin: 0 0.5em;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .switchButton:hover {
+    background-color: #0056b3;
+  }
+  

@@ -48,15 +48,39 @@ const DetailView: React.FC<Props> = ({ data }) => {
 
   return (
     <div className={styles.detailContainer}>
+      {/* List and Gallery buttons */}
+      <div className={styles.viewSwitch}>
+        <button className={styles.switchButton} onClick={() => navigate("/")}>
+          List
+        </button>
+        <button
+          className={styles.switchButton}
+          onClick={() => navigate("/gallery")}
+        >
+          Gallery
+        </button>
+      </div>
+
+      {/* Details section */}
       <div className={styles.detailCard}>
         <img
           src={item.url}
           alt={`${item.asset_id} Icon`}
           className={styles.icon}
         />
-        <div className={styles.assetID}>{item.asset_id}</div>
+        <div className={styles.assetID}>
+          <strong>{item.asset_id}</strong> - {item.name}
+        </div>
+        <div>Date Released: {item.data_start}</div>
+        <div>
+          Current Price: $
+          {item.asset_id === "USD"
+            ? "1.00"
+            : parseFloat(item.price_usd).toFixed(2)}
+        </div>
       </div>
 
+      {/* Navigation buttons section */}
       <div className={styles.navButtons}>
         {prevItem ? (
           <button onClick={handlePrevClick}>Previous</button>

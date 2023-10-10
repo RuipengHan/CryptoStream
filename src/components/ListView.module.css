@@ -109,9 +109,10 @@
 }
 
 .datePrice {
-  display: flex;            /* Adjusted to flex */
-  flex-direction: column;   /* Makes it a column to ensure each detail is on a separate line */
+  display: flex;
+  flex-direction: column;
   margin-top: 10px;
   font-size: 0.9em;
   color: #777;
+  gap: 8px;
 }
