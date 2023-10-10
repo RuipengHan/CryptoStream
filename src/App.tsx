@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
 import ListView from "./components/ListView";
 import GalleryView from "./components/GalleryView";
 import DetailView from "./components/DetailView";
 
 import axios from "axios";
+import styles from "./App.module.css";
 
 const App: React.FC = () => {
   const [data, setData] = useState<any[]>([]);
@@ -48,11 +50,14 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<ListView data={data} />} />
-        <Route path="/gallery" element={<GalleryView data={data} />} />
-        <Route path="/detail/:itemId" element={<DetailView data={data} />} />
-      </Routes>
+      <div className={styles.contentMargin}>
+        <Header />
+        <Routes>
+          <Route path="/" element={<ListView data={data} />} />
+          <Route path="/gallery" element={<GalleryView data={data} />} />
+          <Route path="/detail/:itemId" element={<DetailView data={data} />} />
+        </Routes>
+      </div>
     </Router>
   );
 };
