@@ -17,8 +17,8 @@ const GalleryView: React.FC<Props> = ({ data }) => {
   // Filters data based on id and name (case insensitive):
   let filteredData = data.filter(
     (item) =>
-      item.asset_id.toLowerCase().includes(query) ||
-      item.name.toLowerCase().includes(query)
+      item.asset_id.toLowerCase().includes(query.toLowerCase()) ||
+      item.name.toLowerCase().includes(query.toLowerCase())
   );
 
   // Filtering:
@@ -71,7 +71,7 @@ const GalleryView: React.FC<Props> = ({ data }) => {
         type="text"
         placeholder="Search by Asset ID..."
         value={query}
-        onChange={(e) => setQuery(e.target.value.toLowerCase())}
+        onChange={(e) => setQuery(e.target.value)}
         className={styles.searchInput}
       />
 
