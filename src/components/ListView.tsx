@@ -23,8 +23,8 @@ const ListView: React.FC<Props> = ({ data }) => {
   // Filters data based on id and name (case insensitive):
   const filteredData = data.filter(
     (item) =>
-      item.asset_id.toLowerCase().includes(query) ||
-      item.name.toLowerCase().includes(query)
+      item.asset_id.toLowerCase().includes(query.toLowerCase()) ||
+      item.name.toLowerCase().includes(query.toLowerCase())
   );
 
   // Get current page data
@@ -81,7 +81,7 @@ const ListView: React.FC<Props> = ({ data }) => {
   const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value.toLowerCase());
+    setQuery(e.target.value);
     setCurrentPage(1); // Reset to the first page
   };
 
