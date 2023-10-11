@@ -30,7 +30,6 @@ const ListView: React.FC<Props> = ({ data }) => {
   // Get current page data
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  // const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1);

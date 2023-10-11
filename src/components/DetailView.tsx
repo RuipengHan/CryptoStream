@@ -79,6 +79,7 @@ const DetailView: React.FC<Props> = ({ data }) => {
             ? "1.00"
             : parseFloat(item.price_usd).toFixed(2)}
         </div>
+        <div>Last Hour Volume (USD): ${item.volume_1hrs_usd}</div>
         <div>1-Day Volume (USD): ${item.volume_1day_usd}</div>
         <div>1-Month Volume (USD): ${item.volume_1mth_usd}</div>
       </div>
